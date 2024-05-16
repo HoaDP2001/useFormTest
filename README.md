@@ -4,9 +4,9 @@ The `register` function in React Hook Form is used to connect your input element
 
 ### 2. How can you set custom validation rules for a form field in React Hook Form? Provide an example.
 
-You can set custom validation rules for a form field by passing validation rules as an object to the `register` function
-![alt text](image-1.png)
+You can set custom validation rules for a form field by passing validation rules as an object to the `register` function.
 I am using required, min and max to validate this field. This field must not be empty, at least 18 and max 66 years.
+![alt text](image-1.png)
 
 ### 3. Describe how you would handle form reset in React Hook Form.
 
