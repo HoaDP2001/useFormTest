@@ -16,7 +16,6 @@ const FormUser: React.FC = () => {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
     alert(
       `Your information includes ${data.name}, ${data.email} and ${data.age} years old have been submit successfully!`
     );
@@ -30,9 +29,12 @@ const FormUser: React.FC = () => {
         <div className="flex flex-col gap-3">
           {/* Name field */}
           <div className="wrapper-field">
-            <label className="text-2xl">Name:</label>
+            <label htmlFor="name" className="text-2xl">
+              Name:
+            </label>
             <div className="flex flex-col gap-3">
               <input
+                id="name"
                 className="input-field"
                 {...register("name", { required: "Name is required" })}
               />
@@ -44,9 +46,12 @@ const FormUser: React.FC = () => {
 
           {/* Email field */}
           <div className="wrapper-field">
-            <label className="text-2xl">Email:</label>
+            <label htmlFor="email" className="text-2xl">
+              Email:
+            </label>
             <div className="flex flex-col gap-3">
               <input
+                id="email"
                 className="input-field"
                 {...register("email", {
                   required: "Email is required",
@@ -65,9 +70,12 @@ const FormUser: React.FC = () => {
           {/* Age field */}
           <div>
             <div className="wrapper-field">
-              <label className="text-2xl">Age:</label>
+              <label htmlFor="age" className="text-2xl">
+                Age:
+              </label>
               <div className="flex flex-col gap-3">
                 <input
+                  id="age"
                   className="input-field"
                   type="number"
                   {...register("age", {
