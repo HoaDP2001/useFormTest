@@ -20,6 +20,7 @@ describe("MyForm Component", () => {
     expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/age/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /submit/i }));
   });
 
   test("shows validation errors on submit with empty fields", async () => {
@@ -33,7 +34,7 @@ describe("MyForm Component", () => {
     expect(await screen.findByText(/age is required/i)).toBeInTheDocument();
   });
 
-  test("shows validation errors for invalid email and age", async () => {
+  test("shows validation errors for invalid email and more than age", async () => {
     render(<FormUser />);
 
     await act(async () => {
@@ -48,8 +49,22 @@ describe("MyForm Component", () => {
     expect(
       await screen.findByText(/age must be less than 66/i)
     ).toBeInTheDocument();
+  });
+
+  test("shows validation errors for invalid email and less than age", async () => {
+    render(<FormUser />);
+
+    await act(async () => {
+      userEvent.type(screen.getByLabelText(/email/i), "invalid-email");
+      userEvent.type(screen.getByLabelText(/age/i), "15");
+      userEvent.click(screen.getByRole("button", { name: /submit/i }));
+    });
+
     expect(
-      await screen.findByText(/age must be at least 18/i)
+      await screen.findByText(/invalid email format/i)
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByText(/age must be more than 18/i)
     ).toBeInTheDocument();
   });
 
