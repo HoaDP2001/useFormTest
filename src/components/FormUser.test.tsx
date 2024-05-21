@@ -48,6 +48,9 @@ describe("MyForm Component", () => {
     expect(
       await screen.findByText(/age must be less than 66/i)
     ).toBeInTheDocument();
+    expect(
+      await screen.findByText(/age must be at least 18/i)
+    ).toBeInTheDocument();
   });
 
   test("submits correctly with valid data", async () => {
